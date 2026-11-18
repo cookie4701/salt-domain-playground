@@ -45,7 +45,7 @@ samba_server:
 
 provision_samba_domain:
   cmd.run:
-    - name: samba-tool domain provision --use-rfc2307 --realm={{ pillar['dc_pillar']['DOMAIN'].upper() }}.{{ pillar['dc_pillar'].upper() }} --domain={{ pillar['dc_pillar']['DOMAIN'].upper() }} --server-role=dc --dns-backend=SAMBA_INTERNAL --adminpass={{ pillar['dc_pillar']['DC_PASSWORD'] }}
+    - name: samba-tool domain provision --use-rfc2307 --realm={{ pillar['dc']['DOMAIN'].upper() }}.{{ pillar['dc'].upper() }} --domain={{ pillar['dc']['DOMAIN'].upper() }} --server-role=dc --dns-backend=SAMBA_INTERNAL --adminpass={{ pillar['dc']['DC_PASSWORD'] }}
     - unless: test -f /var/db/samba4/private/sam.ldb
     - require:
       - file: /var/db/samba4
